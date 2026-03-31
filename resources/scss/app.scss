@@ -15,8 +15,44 @@
     border-radius: 20px;    
     border: 1px solid gray;
     padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
 }
 
 .active_sm{
     color: blue;
+}
+
+.modal_sm{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.5);
+    flex-direction: column;
+}
+
+.modal_sm > div{
+    background-color: rgb(196, 196, 196);
+    padding: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal_sm div div {
+    display: flex;
+    gap: 20px;
+}
+
+.modal_sm.active{
+    display: flex;
 }
