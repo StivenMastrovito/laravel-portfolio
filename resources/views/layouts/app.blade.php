@@ -43,6 +43,9 @@
                         <li class="nav-item {{ request()->routeIs('/project') ? 'active_sm' : '' }}">
                             <a class="nav-link" href="{{route('project.index')}}">I miei progetti</a>
                         </li>
+                        <li class="nav-item {{ request()->routeIs('/project') ? 'active_sm' : '' }}">
+                            <a class="nav-link" href="{{route('type.index')}}">Categorie</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

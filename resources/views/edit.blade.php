@@ -14,6 +14,14 @@
     <input type="text" name="author" class="form-control" id="author" value="{{$project->author}}" >
   </div>
   <div class="mb-3">
+    <label for="type_id" class="form-label">CATEGORIA</label>
+    <select name="type_id" id="type_id">
+      @foreach ($types as $type)
+          <option value="{{$type->id}}" {{$type->id == $project->type_id ? 'selected' : ''}}>{{$type->name}}</option>
+      @endforeach
+    </select>
+  </div>
+  <div class="mb-3">
     <label for="description" class="form-label">DESCRIZIONE</label>
     <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{$project->description}}"</textarea>
   </div>

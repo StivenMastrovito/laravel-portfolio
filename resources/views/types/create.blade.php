@@ -1,0 +1,11 @@
+@extends('layouts.app')
+@section('content')
+    <form action="{{route('type.store')}}" method="POST">
+        @csrf
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome categoria:</label>
+    <input type="text" class="form-control" id="name" name="name" >
+  </div>
+  <button type="submit" class="btn btn-outline-primary">Aggiungi</button>
+</form>
+@endsection
