@@ -17,4 +17,15 @@ class ProjectsController extends Controller
         "data" => $projects
     ]);
     }
+
+    public function show(string $id){
+        $project = project::where('id', $id)->get();
+        
+        $project->load('type', 'technologies');
+
+        return response()->json([
+            'success' => true,
+            'data' => $project
+        ]);
+    }
 }
