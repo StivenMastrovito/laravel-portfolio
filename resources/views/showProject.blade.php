@@ -1,10 +1,19 @@
 @extends('layouts.app')
 @section('content')
 
+
 <div class="container">
     <h1>{{ $project->name }}</h1>
     <p>{{ $project->author }}</p>
     <p>Categoria: {{is_null($project->type) ? 'nessuna' : $project->type->name }}</p>
+    <small>
+        Tecnologie
+    @forelse ($project->technologies as $technology)
+        <span class="badge" style="background-color: {{$technology->color}}">{{$technology->name}}</span>    
+    @empty
+        <p>Nessuna tecnologia selezionata</p>
+    @endforelse 
+    </small>
     <h3>{{ $project->description }}</h3>
     <div class="">
         <a class="btn btn-outline-warning" href="{{ route('project.edit', $project) }}">MODIFICA</a>

@@ -20,6 +20,14 @@
       @endforeach
     </select>
   </div>
+  <h3>TECNOLOGIE UTILIZZATE</h3>
+  <div class="mb-3">
+      @foreach ($technologies as $technology)
+          <input type="checkbox" name="technologies[]" id="tag-{{$technology->id}}" value="{{$technology->id}}">
+          <label for="tag-{{$technology->id}}">{{$technology->name}}</label>
+      @endforeach
+    </select>
+  </div>
   <div class="mb-3">
     <label for="description" class="form-label">DESCRIZIONE</label>
     <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>

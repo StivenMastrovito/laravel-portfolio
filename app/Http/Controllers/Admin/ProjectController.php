@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('create', compact('types'));
+        return view('create', compact('types', 'technologies'));
     }
 
     /**
@@ -34,8 +36,8 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->all();
 
+        $data = request()->all();
         $newProject = new project();
 
         $newProject->name = $data['name'];
@@ -44,6 +46,10 @@ class ProjectController extends Controller
         $newProject->description = $data['description'];
 
         $newProject->save();
+
+        if($request->has('technologies')){
+            $newProject->technologies()->attach($data['technologies']);
+        }
 
         $project = $newProject;
 
@@ -65,7 +71,9 @@ class ProjectController extends Controller
     public function edit(project $project)
     {
         $types = Type::all();
-        return view('edit', compact('project', 'types'));
+        $technologies = Technology::all();
+
+        return view('edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -82,6 +90,12 @@ class ProjectController extends Controller
 
         $project->update();
 
+        if($request->has('technologies')){
+            $project->technologies()->sync($data['technologies']);
+        }else{
+            $project->technologies()->detach();
+        }
+
         return view('showProject', compact('project'));
 
     }
@@ -91,6 +105,7 @@ class ProjectController extends Controller
      */
     public function destroy(project $project)
     {
+        $project->technologies()->detach();
         $project->delete();
 
         return redirect()->route('project.index');
